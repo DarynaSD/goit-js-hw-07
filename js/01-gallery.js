@@ -32,6 +32,8 @@ console.log(lbulElem);
 // прослуховувач на ul 
 ulElem.addEventListener('click', showBigImage);
 
+
+
 //функція відкриття модалки
 function showBigImage(e) {
   e.preventDefault();
@@ -42,9 +44,22 @@ function showBigImage(e) {
     const instance = basicLightbox.create(`
     <img src="${bigImgSrc}" width="800" height="600">
     `)
-    instance.show()
+    instance.show();
+
+
+    //закриття по Esc
+    document.addEventListener('keyup', closeBigImage);
+    function closeBigImage(e) {
+        if (e.code === 'Escape')
+        {
+        instance.close();
+        document.removeEventListener('keyup', closeBigImage);
+        }
+      }
   } 
 }
+
+
 
 
 
